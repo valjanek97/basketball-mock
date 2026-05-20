@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Draft: Scouting Challenge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@400;700;900&display=swap');
+        body { font-family: 'Noto Sans HK', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .basketball-bg {
+            background-image: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+        }
+        .star-text { color: #fbbf24; text-shadow: 0 0 15px rgba(251, 191, 36, 0.8); }
+        .bust-text { color: #ef4444; text-shadow: 0 0 15px rgba(239, 68, 68, 0.8); }
+        .hidden-section { display: none; }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    </style>
+</head>
+<body class="basketball-bg min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="bg-slate-900 border-b border-slate-700 p-4 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-black text-orange-500 tracking-wider">🏀 THE DRAFT: GM 球探挑戰</h1>
+            <div class="space-x-4">
+                <button onclick="showSection('section1')" class="nav-btn bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded transition font-bold">1. 戰術分析 (教學)</button>
+                <button onclick="showSection('section3')" class="nav-btn bg-orange-600 hover:bg-orange-500 text-white px-4 py-2 rounded transition font-bold shadow-[0_0_10px_rgba(249,115,22,0.5)]">2. 選秀大會 (自動計分)</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-6 max-w-7xl mx-auto w-full">
+
+        <!-- SECTION 1: Locker Room Talk -->
+        <div id="section1" class="section-content bg-slate-800 rounded-xl p-8 shadow-2xl border border-slate-700">
+            <h2 class="text-4xl font-black mb-6 text-orange-400">賽前戰術分析 (Scouting Report)</h2>
+            <p class="text-xl text-slate-300 mb-8">要寫贏 Email (The TA)，你必須了解你手上的裝備 (Vocabulary)。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Interactive Board -->
+                <div class="bg-slate-900 p-6 rounded-lg border-2 border-blue-500 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white px-4 py-1 rounded-bl-lg font-bold">高科技派</div>
+                    <h3 class="text-3xl font-black text-blue-400 mb-4">Interactive Boards (電子版)</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="inline-block bg-green-900 text-green-300 px-2 py-1 rounded text-sm font-bold mb-1">PROS (優點)</span>
+                            <ul class="list-disc list-inside text-slate-300">
+                                <li><strong>multimedia functions:</strong> 多媒體功能 (Adj + Noun)</li>
+                                <li><strong>large display space:</strong> 大螢幕 (Adj + Noun)</li>
+                                <li><strong>save content digitally:</strong> 數碼儲存 (Verb)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <span class="inline-block bg-red-900 text-red-300 px-2 py-1 rounded text-sm font-bold mb-1">CONS (缺點)</span>
+                            <ul class="list-disc list-inside text-slate-300">
+                                <li><strong>high initial investment:</strong> 超貴 (Adj + Noun)</li>
+                                <li><strong>depend on Wi-Fi:</strong> 依賴網絡 (Verb)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conventional Whiteboard -->
+                <div class="bg-slate-900 p-6 rounded-lg border-2 border-slate-400 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-slate-600 text-white px-4 py-1 rounded-bl-lg font-bold">傳統實用派</div>
+                    <h3 class="text-3xl font-black text-slate-100 mb-4">Conventional Whiteboards (白板)</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="inline-block bg-green-900 text-green-300 px-2 py-1 rounded text-sm font-bold mb-1">PROS (優點)</span>
+                            <ul class="list-disc list-inside text-slate-300">
+                                <li><strong>cost-effective / affordable:</strong> 平靚正 (Adj)</li>
+                                <li><strong>function reliably:</strong> 可靠運作 (Verb)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <span class="inline-block bg-red-900 text-red-300 px-2 py-1 rounded text-sm font-bold mb-1">CONS (缺點)</span>
+                            <ul class="list-disc list-inside text-slate-300">
+                                <li><strong>lack multimedia functions:</strong> 冇片播 (Verb)</li>
+                                <li><strong>marker dust:</strong> 擦到成手粉 (Noun)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: The Game -->
+        <div id="section3" class="section-content hidden-section flex flex-col h-full">
+            <div class="flex justify-between items-end mb-4">
+                <div>
+                    <h2 class="text-4xl font-black text-orange-400 uppercase tracking-widest">📊 新秀評估挑戰賽 📊</h2>
+                    <p class="text-slate-400 mt-2">各隊 GM，請決定「挑戰積分」，並預測這個球員（句子）是 <span class="text-yellow-400 font-bold">STAR ⭐️</span> 還是 <span class="text-red-500 font-bold">BUST ❌</span></p>
+                </div>
+            </div>
+
+            <!-- TEAMS SCOREBOARD & PREDICTION PANELS -->
+            <div id="teams-container" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <!-- Rendered by JS -->
+            </div>
+
+            <!-- FLASHCARD / GAME BOARD -->
+            <div class="bg-slate-800 rounded-2xl p-8 border-2 border-slate-600 flex flex-col items-center justify-center min-h-[300px] relative shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+                
+                <div class="absolute top-4 left-4 text-slate-400 font-bold text-lg">新秀報告 (Prospect) #<span id="q-counter">1</span></div>
+                
+                <!-- The Sentence -->
+                <div id="sentence-display" class="text-3xl md:text-5xl text-center font-black text-white mb-8 leading-relaxed px-4">
+                    Loading...
+                </div>
+
+                <!-- Reveal Button -->
+                <div id="control-buttons" class="flex flex-col items-center mt-4">
+                    <button onclick="revealAnswer()" class="bg-orange-600 hover:bg-orange-500 text-white text-2xl font-black py-4 px-12 rounded-full shadow-[0_0_20px_rgba(234,88,12,0.6)] transform transition hover:scale-105 border-2 border-orange-300">
+                        揭曉答案 (Reveal)
+                    </button>
+                    <p class="text-slate-400 text-sm mt-3">點擊後會自動為各隊計算得分</p>
+                </div>
+
+                <!-- Answer Area (Hidden initially) -->
+                <div id="answer-area" class="hidden flex flex-col items-center w-full mt-4 animate-fade-in">
+                    <div id="status-display" class="text-6xl font-black mb-6 uppercase tracking-widest"></div>
+                    
+                    <div id="correction-box" class="bg-slate-900 p-6 rounded-xl w-full max-w-4xl border-l-8 hidden shadow-lg">
+                        <p class="text-slate-400 text-sm mb-1 uppercase font-bold tracking-widest">正確寫法 (Correction):</p>
+                        <p id="correction-display" class="text-3xl text-green-400 font-black mb-6"></p>
+                        <p class="text-slate-400 text-sm mb-1 uppercase font-bold tracking-widest">教練講評 (Why):</p>
+                        <p id="reason-display" class="text-xl text-slate-200 font-bold leading-relaxed"></p>
+                    </div>
+
+                    <!-- Payout Results -->
+                    <div id="payout-results" class="flex flex-wrap justify-center gap-4 mt-6 text-xl font-bold">
+                        <!-- Filled by JS -->
+                    </div>
+
+                    <button onclick="nextQuestion()" class="mt-8 border-2 border-slate-400 hover:bg-slate-700 hover:border-white text-white font-black text-xl py-4 px-10 rounded-full transition">
+                        評估下一個球員 (Next Prospect) ➔
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // -------------------------
+        // GAME STATE & DATA
+        // -------------------------
+        let teams = [
+            { id: 0, name: "LAKERS", color: "purple", score: 100, challengePts: 10, predictChoice: null },
+            { id: 1, name: "SPURS", color: "gray", score: 100, challengePts: 10, predictChoice: null },
+            { id: 2, name: "CELTICS", color: "green", score: 100, challengePts: 10, predictChoice: null },
+            { id: 3, name: "WARRIORS", color: "blue", score: 100, challengePts: 10, predictChoice: null }
+        ];
+
+        // 55題精準題庫：徹底符合「去Articles測試」、「V+ing/Noun since 結構化」、「100%全展開不縮寫」
+        const prospects = [
+            // --- 1. Thank you & Opening Patterns (1-8) ---
+            { 
+                text: "Thank you of your email about the upgrade.", 
+                status: "BUST", 
+                highlighted: "Thank you <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>of</span> your email about the upgrade.",
+                correction: "Thank you FOR your email about the upgrade.", 
+                reason: "Thank you 後面永遠配 FOR，不是 of！" 
+            },
+            { 
+                text: "Thank you for your email about the upgrade of classroom writing boards.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "開場白完美，拼寫與結構完全正確！" 
+            },
+            { 
+                text: "Thank you for your email on 23 July 2026.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "日期表達完全正確，July 已完整展開無縮寫。" 
+            },
+            { 
+                text: "Thank you for your email for 23 July 2026.", 
+                status: "BUST", 
+                highlighted: "Thank you for your email <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>for</span> 23 July 2026.",
+                correction: "Thank you for your email ON 23 July 2026.", 
+                reason: "表達在哪一天收到電郵時，日期前面要用 ON，不能用 for！" 
+            },
+            { 
+                text: "I would like to reply you as follows.", 
+                status: "BUST", 
+                highlighted: "I would like to <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>reply you</span> as follows.",
+                correction: "I would like to reply TO you as follows.", 
+                reason: "少字！Reply 後面接人時，必須在中間加 TO！" 
+            },
+            { 
+                text: "I would like to reply to you as follows.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "Reply to 用法正確。" 
+            },
+            { 
+                text: "I would like to update you for our preferences.", 
+                status: "BUST", 
+                highlighted: "I would like to update you <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>for</span> our preferences.",
+                correction: "I would like to update you ON our preferences.", 
+                reason: "介詞錯誤！Update you 後面要接 ON，不能用 for。" 
+            },
+            { 
+                text: "We appreciate your recommendations and would like to update you on our preferences.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "背得極熟！完全正確的高分範本句。" 
+            },
+
+            // --- 2. Singular vs Plural / Both (9-16) ---
+            { 
+                text: "We have carefully considered both option that you proposed.", 
+                status: "BUST", 
+                highlighted: "We have carefully considered both <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>option</span> that you proposed.",
+                correction: "We have carefully considered both options that you proposed.", 
+                reason: "Noun 單眾數錯誤！Both (兩者) 後面的名詞必須加 s (options)！" 
+            },
+            { 
+                text: "We have carefully considered both options that you proposed.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "Both options 複數形式使用正確！" 
+            },
+            { 
+                text: "After comparing the two board, we prefer interactive boards.", 
+                status: "BUST", 
+                highlighted: "After comparing the two <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>board</span>, we prefer interactive boards.",
+                correction: "After comparing the two boards, we prefer interactive boards.", 
+                reason: "Noun 漏加 s！Two (兩個) 後面必須使用複數 boards！" 
+            },
+            { 
+                text: "After comparing the two boards, we prefer interactive boards.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "複數 boards 運用正確！" 
+            },
+            { 
+                text: "We perfer conventional whiteboards.", 
+                status: "BUST", 
+                highlighted: "We <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>perfer</span> conventional whiteboards.",
+                correction: "We PREFER conventional whiteboards.", 
+                reason: "串錯字！是 P-R-E-F-E-R，不是 perfer！" 
+            },
+            { 
+                text: "We prefer conventional whiteboards.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "Prefer 拼寫完全正確。" 
+            },
+            { 
+                text: "Interactive boards are our prefered choice.", 
+                status: "BUST", 
+                highlighted: "Interactive boards are our <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>prefered</span> choice.",
+                correction: "Interactive boards are our PREFERRED choice.", 
+                reason: "串錯字！Preferred 作為形容詞，中間必須是雙寫 r (p-r-e-f-e-r-r-e-d)！" 
+            },
+            { 
+                text: "Interactive boards are our preferred choice.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "Preferred 形容詞拼寫無誤。" 
+            },
+
+            // --- 3. Verb Misuse (are + Verb, are lack of) (17-24) ---
+            { 
+                text: "Interactive boards are enhance teaching effectiveness.", 
+                status: "BUST", 
+                highlighted: "Interactive boards <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>are enhance</span> teaching effectiveness.",
+                correction: "Interactive boards enhance teaching effectiveness.", 
+                reason: "動詞前面多加了 are！Enhance 本身就是動詞，前面絕對不要加 are！" 
+            },
+            { 
+                text: "We prefer interactive boards because they enhance teaching effectiveness.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "動詞 enhance 使用正確，無多餘 are。" 
+            },
+            { 
+                text: "Conventional whiteboards are function reliably without electricity.", 
+                status: "BUST", 
+                highlighted: "Conventional whiteboards <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>are function</span> reliably without electricity.",
+                correction: "Conventional whiteboards function reliably without electricity.", 
+                reason: "多寫了 are！Function 在這裡作動詞 (運作)，前面不要加 are！" 
+            },
+            { 
+                text: "Conventional whiteboards function reliably at all times.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "動詞 function 搭配副詞 reliably 極佳！" 
+            },
+            { 
+                text: "We do not prefer conventional whiteboards as they are lack multimedia functions.", 
+                status: "BUST", 
+                highlighted: "We do not prefer conventional whiteboards as <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>they are lack</span> multimedia functions.",
+                correction: "We do not prefer conventional whiteboards as they LACK multimedia functions.", 
+                reason: "常犯嚴重錯誤！Lack 是動詞，前面不能加 are！直接寫 they lack 即可。" 
+            },
+            { 
+                text: "We do not prefer conventional whiteboards as they lack multimedia functions.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "They lack 動詞結構完美。" 
+            },
+            { 
+                text: "They have it is long lifespan.", 
+                status: "BUST", 
+                highlighted: "They <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>have it is</span> long lifespan.",
+                correction: "They have a long lifespan.", 
+                reason: "中式英文！一邊用 have 一邊用 is，一句不能有兩個動詞！" 
+            },
+            { 
+                text: "We do pet prefer interactive boards.", 
+                status: "BUST", 
+                highlighted: "We do <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>pet</span> prefer interactive boards.",
+                correction: "We do NOT prefer interactive boards.", 
+                reason: "手寫筆誤！看清楚，是 not 不是 pet！" 
+            },
+
+            // --- 4. Connectives & Flow (Although ... but) (25-30) ---
+            { 
+                text: "Although they are cost-effective, but they lack multimedia functions.", 
+                status: "BUST", 
+                highlighted: "<span class='text-red-500 underline font-bold bg-red-100/10 px-1'>Although</span> they are cost-effective, <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>but</span> they lack multimedia functions.",
+                correction: "Although they are cost-effective, they lack multimedia functions.", 
+                reason: "對比詞死穴！Although 與 But 不能共存在同一句中！" 
+            },
+            { 
+                text: "Although they require a high initial investment, they are engaging.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "正確！Although 句子中無出現 but。" 
+            },
+            { 
+                text: "While they lack multimedia functions, they are durable.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "對比詞 While (雖然) 運用正確。" 
+            },
+            { 
+                text: "While they lack multimedia functions, but they are durable.", 
+                status: "BUST", 
+                highlighted: "<span class='text-red-500 underline font-bold bg-red-100/10 px-1'>While</span> they lack multimedia functions, <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>but</span> they are durable.",
+                correction: "While they lack multimedia functions, they are durable.", 
+                reason: "錯誤對比！用了 While，後面絕不能加 but！" 
+            },
+            { 
+                text: "Regarding the options, they have a good reputation so they are favoured.", 
+                status: "BUST", 
+                highlighted: "Regarding the options, <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>they have a good reputation so</span> they are favoured.",
+                correction: "Regarding the options, they have a good reputation, which is favoured.", 
+                reason: "中式口語拼接！用 which 代替 so 更合乎 B2 商業電郵規範。" 
+            },
+
+            // --- 5. Lexical & Spelling Disasters (31-42) ---
+            { 
+                text: "They require frequment erasing.", 
+                status: "BUST", 
+                highlighted: "They require <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>frequment</span> erasing.",
+                correction: "They require frequent erasing.", 
+                reason: "串錯字！是 frequent，中間多寫了 m！" 
+            },
+            { 
+                text: "Frequent erasing interupts the flow of training.", 
+                status: "BUST", 
+                highlighted: "Frequent erasing <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>interupts</span> the flow of training.",
+                correction: "Frequent erasing interrupts the flow of training.", 
+                reason: "串錯字！Interrupts 中間是雙寫 r (i-n-t-e-r-r-u-p-t-s)！" 
+            },
+            { 
+                text: "In addion, they can reduce marker dust.", 
+                status: "BUST", 
+                highlighted: "In <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>addion</span>, they can reduce marker dust.",
+                correction: "In addition, they can reduce marker dust.", 
+                reason: "串錯字！漏寫了其中的 t (addition)。" 
+            },
+            { 
+                text: "Futhermore, we will do it after school.", 
+                status: "BUST", 
+                highlighted: "<span class='text-red-500 underline font-bold bg-red-100/10 px-1'>Futhermore</span>, we will do it after school.",
+                correction: "Furthermore, we will do it after school.", 
+                reason: "串錯字！漏寫了第一個 r (Furthermore)。" 
+            },
+            { 
+                text: "They function reliably and have many exciting funtions.", 
+                status: "BUST", 
+                highlighted: "They function reliably and have many exciting <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>funtions</span>.",
+                correction: "They function reliably and have many exciting functions.", 
+                reason: "串錯字！名詞 functions 漏寫了 c！" 
+            },
+            { 
+                text: "In reponse to this, we will confirm the date.", 
+                status: "BUST", 
+                highlighted: "In <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>reponse</span> to this, we will confirm the date.",
+                correction: "In response to this, we will confirm the date.", 
+                reason: "串錯字！漏寫了中間的 s (response)。" 
+            },
+            { 
+                text: "I will comfirm the procurement budget.", 
+                status: "BUST", 
+                highlighted: "I will <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>comfirm</span> the procurement budget.",
+                correction: "I will confirm the procurement budget.", 
+                reason: "串錯字！是 confirm，不是 comfirm (是 n 不是 m)！" 
+            },
+            { 
+                text: "The site coordinator will double-check classroom measuremets.", 
+                status: "BUST", 
+                highlighted: "The site coordinator will double-check classroom <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>measuremets</span>.",
+                correction: "The site coordinator will double-check classroom measurements.", 
+                reason: "串錯字！漏寫了尾部的 n (measurements)。" 
+            },
+            { 
+                text: "This will avoid disturbance affer school.", 
+                status: "BUST", 
+                highlighted: "This will avoid disturbance <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>affer</span> school.",
+                correction: "This will avoid disturbance after school.", 
+                reason: "手寫卷筆誤！是 after 不是 affer！" 
+            },
+            { 
+                text: "They are durable and long-lasting.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "形容詞耐久度 (durable) 拼寫與運用完美。" 
+            },
+            { 
+                text: "They facilitate classroom interaction.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "動詞 facilitate (促進) 拼寫與運用完美。" 
+            },
+
+            // --- 6. Suggest + Since [adj/can] (Template Strict Match) (43-55) ---
+            { 
+                text: "Regarding the setup work, we suggest after-school installation since it is quick.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "完美！We suggest + Noun (after-school installation) + since it is + Adj (quick) 結構極度保險且高分。" 
+            },
+            { 
+                text: "Regarding the setup work, we suggest after-school installation avoid disturbance.", 
+                status: "BUST", 
+                highlighted: "Regarding the setup work, we suggest after-school <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>installation avoid</span> disturbance.",
+                correction: "Regarding the setup work, we suggest after-school installation since it can avoid disturbance.", 
+                reason: "少字！在寫完 installation 後，必須接上 since it can avoid... 來作原因解釋！" 
+            },
+            { 
+                text: "Regarding the delivery schedule, we suggest early February installation since it is reliable.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "完全正確，February 已完整展開。結構為 suggest + Noun + since it is + Adj。" 
+            },
+            { 
+                text: "Regarding the delivery schedule, we suggest to install in early February.", 
+                status: "BUST", 
+                highlighted: "Regarding the delivery schedule, we suggest <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>to install</span> in early February.",
+                correction: "Regarding the delivery schedule, we suggest early February installation.", 
+                reason: "動詞用法錯誤！Suggest 後面不能跟 to install！應改用 Noun (early February installation)。" 
+            },
+            { 
+                text: "We suggest installing the boards in early February since they are useful.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "正確！Suggest + V-ing (installing) + since they are + Adj (useful)。" 
+            },
+            { 
+                text: "We suggest to installing the boards in early February.", 
+                status: "BUST", 
+                highlighted: "We suggest <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>to installing</span> the boards in early February.",
+                correction: "We suggest installing the boards in early February.", 
+                reason: "動詞用法混亂！Suggest 後面直接加 V-ing (installing)，不能在前面加 to！" 
+            },
+            { 
+                text: "Regarding the schedule, we suggest after-school installation since they can reduce disturbance.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "正確！Suggest + Noun + since they can + Verb (reduce disturbance)。" 
+            },
+            { 
+                text: "It can saves notes digitally.", 
+                status: "BUST", 
+                highlighted: "It can <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>saves</span> notes digitally.",
+                correction: "It can SAVE notes digitally.", 
+                reason: "動詞形式錯誤！Can 之後的動詞必須使用原形動詞 (save)，絕對不能加 s！" 
+            },
+            { 
+                text: "It can save notes digitally.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "正確使用原形動詞 save。" 
+            },
+            { 
+                text: "Also, we understand that you would like us to arrange the setup work.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "段落過渡背得極其熟練，完全正確！" 
+            },
+            { 
+                text: "I will ask department to confirm the budget.", 
+                status: "BUST", 
+                highlighted: "I will ask <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>department</span> to confirm the budget.",
+                correction: "I will ask the department to confirm the budget.", 
+                reason: "串錯字或常識錯誤！本題無縮寫問題，但手寫常遺漏，改寫為 I will ask the department / finance team..." 
+            },
+            { 
+                text: "I am looking forward to hearing from you.", 
+                status: "STAR", 
+                highlighted: "",
+                correction: "", 
+                reason: "Looking forward to 後面配 V-ing (hearing) 正確！" 
+            },
+            { 
+                text: "I am looking forward to hear from you.", 
+                status: "BUST", 
+                highlighted: "I am looking forward to <span class='text-red-500 underline font-bold bg-red-100/10 px-1'>hear</span> from you.",
+                correction: "I am looking forward to HEARING from you.", 
+                reason: "文法錯誤！Looking forward to 後面必須接 V-ing (hearing)！" 
+            }
+        ];
+
+        let currentPool = [];
+        let currentQuestion = null;
+        let qCount = 0;
+
+        // -------------------------
+        // UI RENDERING
+        // -------------------------
+        const colors = {
+            purple: { bg: 'bg-purple-900', border: 'border-purple-500', text: 'text-purple-400' },
+            gray: { bg: 'bg-slate-700', border: 'border-gray-400', text: 'text-gray-300' },
+            green: { bg: 'bg-green-900', border: 'border-green-500', text: 'text-green-400' },
+            blue: { bg: 'bg-blue-900', border: 'border-blue-500', text: 'text-blue-400' }
+        };
+
+        function renderTeams() {
+            const container = document.getElementById('teams-container');
+            container.innerHTML = ''; // Clear
+
+            teams.forEach(team => {
+                const c = colors[team.color];
+                
+                // Style for active prediction buttons
+                const starActive = team.predictChoice === 'STAR' ? 'bg-yellow-500 text-black shadow-[0_0_15px_rgba(234,179,8,0.8)] scale-105' : 'bg-slate-700 text-slate-400 opacity-60 hover:opacity-100';
+                const bustActive = team.predictChoice === 'BUST' ? 'bg-red-500 text-white shadow-[0_0_15px_rgba(239,68,68,0.8)] scale-105' : 'bg-slate-700 text-slate-400 opacity-60 hover:opacity-100';
+
+                const html = `
+                <div class="bg-slate-800 p-4 rounded-xl border-2 ${c.border} text-center flex flex-col relative transition-all">
+                    ${team.predictChoice ? `<div class="absolute -top-3 -right-3 bg-green-500 text-white text-xs font-black px-2 py-1 rounded-full shadow-lg animate-bounce">已鎖定!</div>` : ''}
+                    
+                    <h3 class="text-2xl font-black ${c.text}">${team.name}</h3>
+                    <div class="text-5xl font-black text-white my-3 tracking-wider">${team.score}<span class="text-xl ml-1 text-slate-400">PTS</span></div>
+                    
+                    <!-- Points Challenge Controls -->
+                    <div class="my-2 bg-slate-900 p-3 rounded-lg border border-slate-700">
+                        <label class="text-xs text-slate-400 block mb-2 font-bold tracking-widest">設定挑戰積分</label>
+                        <div class="flex justify-center items-center space-x-2">
+                            <button onclick="adjPts(${team.id}, -10)" class="bg-slate-600 hover:bg-slate-500 w-8 h-8 rounded-full font-bold text-white transition">-</button>
+                            <input type="number" id="pts-input-${team.id}" value="${team.challengePts}" 
+                                onchange="setPtsDirect(${team.id}, this.value)"
+                                class="w-20 bg-black text-center text-xl font-bold text-white border border-slate-600 rounded py-1">
+                            <button onclick="adjPts(${team.id}, 10)" class="bg-slate-600 hover:bg-slate-500 w-8 h-8 rounded-full font-bold text-white transition">+</button>
+                        </div>
+                        <button onclick="setPtsDirect(${team.id}, ${team.score})" class="text-xs text-orange-400 mt-2 uppercase font-black hover:text-orange-300 transition">🔥 Max Points 全力出擊</button>
+                    </div>
+
+                    <!-- Prediction Choices -->
+                    <div class="flex space-x-2 mt-2">
+                        <button onclick="placePrediction(${team.id}, 'STAR')" class="flex-1 py-3 rounded-lg font-black transition-all ${starActive}">
+                            ⭐️ 預測 STAR
+                        </button>
+                        <button onclick="placePrediction(${team.id}, 'BUST')" class="flex-1 py-3 rounded-lg font-black transition-all ${bustActive}">
+                            ❌ 預測 BUST
+                        </button>
+                    </div>
+                </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        // -------------------------
+        // GAME LOGIC
+        // -------------------------
+        function showSection(id) {
+            document.querySelectorAll('.section-content').forEach(el => el.classList.add('hidden-section'));
+            document.getElementById(id).classList.remove('hidden-section');
+        }
+
+        // Adjust points with +/- buttons
+        function adjPts(teamId, amount) {
+            let team = teams.find(t => t.id === teamId);
+            let newPts = team.challengePts + amount;
+            if (newPts < 0) newPts = 0;
+            if (newPts > team.score) newPts = team.score;
+            team.challengePts = newPts;
+            renderTeams();
+        }
+
+        // Direct input or Max Points
+        function setPtsDirect(teamId, val) {
+            let team = teams.find(t => t.id === teamId);
+            let newPts = parseInt(val) || 0;
+            if (newPts < 0) newPts = 0;
+            if (newPts > team.score) newPts = team.score;
+            team.challengePts = newPts;
+            renderTeams();
+        }
+
+        // Lock in the prediction (STAR / BUST)
+        function placePrediction(teamId, choice) {
+            let team = teams.find(t => t.id === teamId);
+            if (team.predictChoice === choice) {
+                team.predictChoice = null; // Toggle off
+            } else {
+                team.predictChoice = choice;
+                if (team.challengePts === 0 && team.score > 0) {
+                    team.challengePts = Math.min(10, team.score);
+                }
+            }
+            renderTeams();
+        }
+
+        // 初始化問題與洗牌
+        function initGame() {
+            currentPool = [...prospects].sort(() => Math.random() - 0.5); 
+            currentQuestion = currentPool.pop();
+            qCount = 1;
+            
+            // 直接顯示純文字題目
+            document.getElementById('q-counter').innerText = qCount;
+            document.getElementById('sentence-display').innerHTML = `"${currentQuestion.text}"`;
+            renderTeams();
+        }
+
+        function nextQuestion() {
+            if (currentPool.length === 0) {
+                currentPool = [...prospects].sort(() => Math.random() - 0.5);
+            }
+            currentQuestion = currentPool.pop();
+            qCount++;
+            
+            document.getElementById('q-counter').innerText = qCount;
+            document.getElementById('sentence-display').innerHTML = `"${currentQuestion.text}"`;
+            
+            // 重置 UI 與隊伍預測狀態
+            document.getElementById('answer-area').classList.add('hidden');
+            document.getElementById('control-buttons').classList.remove('hidden');
+            document.getElementById('payout-results').innerHTML = ''; 
+            
+            teams.forEach(t => { 
+                t.predictChoice = null; 
+                t.challengePts = Math.min(10, t.score);
+            });
+            renderTeams();
+        }
+
+        function revealAnswer() {
+            if (!currentQuestion) return; 
+            
+            document.getElementById('control-buttons').classList.add('hidden');
+            document.getElementById('answer-area').classList.remove('hidden');
+            
+            const statusDisplay = document.getElementById('status-display');
+            const payoutContainer = document.getElementById('payout-results');
+            payoutContainer.innerHTML = ''; 
+
+            const isStar = currentQuestion.status === "STAR";
+
+            // 答案面板視覺渲染與高亮機制
+            if (isStar) {
+                statusDisplay.innerText = "⭐️ STAR ⭐️";
+                statusDisplay.className = "text-6xl font-black mb-6 uppercase tracking-widest star-text";
+                document.getElementById('correction-box').classList.add('hidden');
+            } else {
+                statusDisplay.innerText = "❌ BUST ❌";
+                statusDisplay.className = "text-6xl font-black mb-6 uppercase tracking-widest bust-text";
+                
+                // 1. 如果是 BUST，原本的大卡片題目轉換為紅色高亮的 HTML
+                document.getElementById('sentence-display').innerHTML = `"${currentQuestion.highlighted}"`;
+
+                // 2. 顯示下面的改正和講評
+                document.getElementById('correction-box').classList.remove('hidden');
+                document.getElementById('correction-box').classList.add('border-red-500');
+                document.getElementById('correction-display').innerText = currentQuestion.correction;
+                document.getElementById('reason-display').innerText = currentQuestion.reason;
+            }
+
+            // 自動分數結算 (Auto Point Math)
+            teams.forEach(team => {
+                if (team.predictChoice === null) return; 
+
+                let won = (team.predictChoice === currentQuestion.status);
+                let payoutHtml = "";
+
+                if (won) {
+                    team.score += team.challengePts;
+                    payoutHtml = `<div class="bg-green-900 text-green-300 px-4 py-2 rounded-lg border border-green-500 shadow-lg">${team.name}: 預測精準 (+${team.challengePts} PTS)</div>`;
+                } else {
+                    team.score -= team.challengePts;
+                    if (team.score < 0) team.score = 0; 
+                    payoutHtml = `<div class="bg-red-950 text-red-300 px-4 py-2 rounded-lg border border-red-500 shadow-lg">${team.name}: 看走眼了 (-${team.challengePts} PTS)</div>`;
+                }
+                
+                payoutContainer.innerHTML += payoutHtml;
+            });
+
+            renderTeams();
+        }
+
+        // -------------------------
+        // INITIALIZATION
+        // -------------------------
+        initGame();
+    </script>
+</body>
+</html>
